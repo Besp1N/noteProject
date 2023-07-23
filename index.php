@@ -14,13 +14,15 @@ $view = new View();
 
 $vievParams = [];
 if($action === "create"){
+    $page = "create";
     $vievParams["resultCreate"] = "udalo sie";
 }
 else{
+    $page = "list";
     $vievParams["resultList"] = "wyswietlamy notatki";
 }
 
-$view->render($action, $vievParams);
+$view->render($page, $vievParams);
 
 
 
