@@ -11,7 +11,17 @@ const DEFAULT_ACTION = "list";
 $action = $_GET["action"] ?? DEFAULT_ACTION;
 
 $view = new View();
-$view->render($action);
+
+$vievParams = [];
+if($action === "create"){
+    $vievParams["resultCreate"] = "udalo sie";
+}
+else{
+    $vievParams["resultList"] = "wyswietlamy notatki";
+}
+
+$view->render($action, $vievParams);
+
 
 
 
