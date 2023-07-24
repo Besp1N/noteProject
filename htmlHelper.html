@@ -1,27 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="header">
-        <h1>Moje notatki</h1>
-    </div>
-    <div class="container">
-        <div class="menu">
-            <ul>
-                <li><a href="/">Lista notatek</a></li>
-                <li><a href="/?action=create">Nowa notatka</a></li>
-            </ul>
-        </div>
-        <div>
-            
-        </div>
-    </div>
-    <div class="footer">
-
-    </div>
-</body>
-</html>
+<form method="post" action="?action=create" class="note-form">
+  <ul>
+    <li>
+      <label for="title">Tytul <span class="required">*</span></label>
+      <input type="text" name="title" class="field-long" />
+    </li>
+    <li>
+      <label for="description">Opis</label>
+      <textarea
+        name="description"
+        id="field5"
+        class="field-long field-textarea"
+      ></textarea>
+    </li>
+    <li>
+      <input type="submit" value="Submit">
+    </li>
+  </ul>
+</form>
