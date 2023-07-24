@@ -11,6 +11,7 @@ const DEFAULT_ACTION = 'list';
 
 $action = $_GET['action'] ?? DEFAULT_ACTION;
 
+$controller = new Controller();
 $view = new View();
 
 $viewParams = [];
@@ -35,7 +36,7 @@ switch($action){
       "description" => "Opis"
     ];
     break;
-    
+
   default:
     $page = 'list';
     $viewParams['resultList'] = "wyświetlamy notatki";
