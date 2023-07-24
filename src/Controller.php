@@ -7,20 +7,29 @@ require_once("src/View.php");
 
 class Controller
 {
-    public function run(string $action): void{
+    private const DEFAULT_ACTION = 'list';
 
-    $view = new View();
-    $viewParams = [];
+    private array $postData;
+    private array $getData;
+    public function __construct(array $getData, array $postData){
+        $this->getData = $getData;
+        $this->postData = $postData;
+    }
+    public function run(): void{
+        $action = $this->getData['action'] ?? self::DEFAULT_ACTION;
+
+        $view = new View();
+        $viewParams = [];
 
         switch($action){
             case "create":
               $page = 'create';
               $created = false;
-              if(!empty($_POST)){
+              if(!empty($this->postData)){
                 $created = true;
                 $viewParams = [
-                  "title" => $_POST["title"],
-                  "description" => $_POST["description"]
+                  "title" => $this->postData["title"],
+                  "description" => $this->postData["description"]
                 ];
               }
               $viewParams["created"] = $created;
