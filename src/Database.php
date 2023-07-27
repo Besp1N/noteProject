@@ -3,24 +3,26 @@ declare(strict_types = 1);
 
 namespace App;
 
-use Exception;
+require_once("Exception/AppException.php");
+
+
+use App\Exception\StorageException;
 use PDO;
+use Throwable;
+
 class Database
 {
     public function __construct(array $config){
-        $dsn = "mysql:dbname={$config["database"]};host={$config["host"]}";
 
         try{
-
-        }catch(Exception $e){
-
+            $dsn = "mysql:dbname={$config["database"]};host={$config["host"]}";
+            $connection = new PDO(
+                $dsn,
+                $config["user"],
+                $config["password"]
+            );
+        }catch(Throwable $e){
+            throw new StorageException("Connection error");
         }
-
-        $connection = new PDO(
-            $dsn,
-            $config["user"],
-            $config["password"]
-        );
-        dump($connection);
     }
 }
