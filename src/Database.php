@@ -5,6 +5,7 @@ namespace App;
 use App\Exception\ConfigurationException;
 
 require_once("Exception/AppException.php");
+require_once("Exception/StorageException.php");
 
 
 use App\Exception\StorageException;
@@ -14,18 +15,24 @@ use Throwable;
 
 class Database
 {
+    private PDO $conn;
+
     public function __construct(array $config){
         try{
             $this->validateConfig($config);
-            $dsn = "mysql:dbname={$config["database"]};host={$config["host"]}";
-            $connection = new PDO(
+            $this->createConnection($config); 
+        }catch(PDOException $e){
+            throw new StorageException("Connection error");
+        }
+    }
+    
+    private function createConnection(array $config):void{
+        $dsn = "mysql:dbname={$config["database"]};host={$config["host"]}";
+            $this->conn = new PDO(
                 $dsn,
                 $config["user"],
                 $config["password"]
             );
-        }catch(PDOException $e){
-            throw new StorageException("Connection error");
-        }
     }
     private function validateConfig(array $config):void{
         if(
