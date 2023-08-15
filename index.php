@@ -2,34 +2,36 @@
 
 declare(strict_types=1);
 
-namespace App;
-
-use App\Exception\AppException;
-use App\Exception\ConfigurationException;
-use Throwable;
+spl_autoload_register(function (string $classNamespace) {
+  $path = str_replace(['\\', 'App/'], ['/', ''], $classNamespace);
+  $path = "src/$path.php";
+  require_once($path);
+});
 
 require_once("src/Utils/debug.php");
-require_once("src/Controller.php");
-require_once("src/Exception/AppException.php");
-
 $configuration = require_once("config/config.php");
 
-$request = [
-  'get' => $_GET,
-  'post' => $_POST
-];
+use App\Controller\AbstractController;
+use App\Controller\NoteController;
+use App\Request;
+use App\Exception\AppException;
+use App\Exception\ConfigurationException;
 
-try{
-  // $controller = new Controller($request);
-  // $controller->run();
+$request = new Request($_GET, $_POST, $_SERVER);
 
-  Controller::initConfiguration($configuration);
-  (new Controller($request))->run();
-}catch(ConfigurationException $e){
-  echo "<h2> wystapil blad w aplikacji </h2>";
-  echo "Problem z konfiguracja. Prosze skontaktowac sie z administratorem";
-}catch(AppException $e){
-  echo "<h2> wystapil blad w aplikacji </h2>" . $e->getMessage();
-}catch(Throwable $e){
-  echo "<h2> wystapil blad w aplikacji </h2>";
+try {
+  //$controller = new Controller($request);
+  //$controller->run();
+
+  AbstractController::initConfiguration($configuration);
+  (new NoteController($request))->run();
+} catch (ConfigurationException $e) {
+  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+  echo 'Problem z applikacją, proszę spróbować za chwilę.';
+} catch (AppException $e) {
+  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+  echo '<h3>' . $e->getMessage() . '</h3>';
+} catch (\Throwable $e) {
+  echo '<h1>Wystąpił błąd w aplikacji</h1>';
+  dump($e);
 }

@@ -1,41 +1,18 @@
-# Zaprojektowanie wstępnego układu aplikacji - layout
-
-* PSR-12 - https://www.php-fig.org/psr/psr-12/
-
-## Struktura katalogów
-
-<pre>
-project_dir
-  ├── src
-  │   └── ...
-  ├── templates
-  │   ├── pages
-  │   │   └─ ...
-  │   └ ...
-  └ index.php
-</pre>
+# Refactoring time
 
 ## Cel
 
-Stworzymy szablon html z wydzielonymi miejscami na:
-
-* nagłówek
-* menu
-* kontent strony
-
-Dodamy strony:
-
-* formularz dodawania nowej notatki
-* lista notatek - czyli strona główna
-
-Zlinkujemy strony ze sobą.
+* poprawa jakości kodu
 
 ## Krok po kroku
 
-1. wyniesienie funkcji debagujących do osobnego pliku
-   * Importowanie plików
-     * include, include_once
-     * require, require_once
-2. połączenie html i php
-3. wyniesienie html do osobnych plików
-4. utworzenie klasy widoku
+1. CONTROLLER
+   * wyniesienie bloku try-catch do rodzica
+2. DB
+   * refaktoryzacja metod
+   * zmiana Database na klasę Modelu
+   * utworzenie klasy abstrakcyjnej modelu
+     * metody pobierające dane query i gueryAll
+   * wprowadyenie interfejsu
+3. Dodanie widoku obsługującego błędy
+   * łapanie błędów w metodzie run()

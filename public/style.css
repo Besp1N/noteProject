@@ -66,7 +66,6 @@ select {
   border: 1px solid #BEBEBE;
   padding: 7px;
   margin: 0px;
-  transition: all 0.30s ease-in-out;
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
   -ms-transition: all 0.30s ease-in-out;
@@ -107,6 +106,7 @@ form input[type=button] {
   font-size: 18px;
   text-transform: uppercase;
   padding: 12 40px;
+  cursor: pointer;
 }
 
 form input[type=submit]:hover,
@@ -115,6 +115,7 @@ form input[type=button]:hover {
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
+  
 }
 
 form .required {
@@ -339,6 +340,11 @@ form.note-form textarea {
 .delete ul,
 .show ul {
   list-style: none;
+}
+
+.delete ul li,
+.show ul li {
+  margin-top: 10px;
 }
 
 .delete button,

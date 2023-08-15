@@ -1,11 +1,12 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 return [
-    "db" => [
-        "host" => "localhost",
-        "database" => "notes",
-        "user" => "user_notes",
-        "password" => "OV1nu.]]IG0s(J9s"
-    ]
+  'db' => [
+    'host' => 'localhost',
+    'database' => 'notes',
+    'user' => 'user_notes',
+    'password' => 'fcv3iRcTxYfnNY6H'
+  ]
 ];
